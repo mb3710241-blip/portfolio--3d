@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muhammad Basim · 3D Portfolio</title>
+  <meta name="description" content="Interactive 3D portfolio of Muhammad Basim: projects, skills, Blender avatar, promo video and an AI chatbot." />
+  <meta name="theme-color" content="#0b0b14" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%237c5cff'/><text x='50' y='66' font-size='46' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>MB</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script>
+    // apply saved theme before paint (no flash)
+    try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- 3D background (floating shapes that react to the mouse) -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <header class="nav" id="nav">
+    <a href="#home" class="logo" aria-label="Home">MB<span>.</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme-toggle" aria-label="Switch to light theme" title="Toggle theme">
+        <span class="sun" aria-hidden="true">☀️</span><span class="moon" aria-hidden="true">🌙</span>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HOME ============ -->
+    <section id="home" class="hero">
+      <div class="hero-text reveal">
+        <p class="eyebrow">👋 Hello, I'm</p>
+        <h1 class="hero-name" data-bind="name">Muhammad Basim</h1>
+        <p class="hero-role"><span id="typed" aria-live="off"></span><span class="caret" aria-hidden="true">|</span></p>
+        <p class="hero-intro" data-bind="intro"></p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="/assets/cv.pdf" class="btn ghost" id="cv-link" download>Download CV</a>
+          <button class="btn ghost" id="hero-chat">🤖 Ask my AI</button>
+        </div>
+        <ul class="stats" id="stats"></ul>
+      </div>
+      <div class="avatar-wrap reveal">
+        <div id="avatar-stage" role="img" aria-label="3D avatar of Muhammad Basim. Click to make it wave."></div>
+        <p class="avatar-hint">Drag to rotate · click me to wave 👋</p>
+      </div>
+      <a href="#about" class="scroll-down" aria-label="Scroll to About"><span></span></a>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="section">
+      <h2 class="section-title reveal"><span>01.</span> About Me</h2>
+      <div class="about-grid">
+        <div class="card about-text reveal" id="about-text"></div>
+        <div class="card about-side reveal">
+          <h3>Quick facts</h3>
+          <ul class="facts" id="facts"></ul>
+          <h3>Interests</h3>
+          <div class="chips" id="interests"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="section">
+      <h2 class="section-title reveal"><span>02.</span> Skills & Technologies</h2>
+      <div class="skills-grid" id="skills-grid"></div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section">
+      <h2 class="section-title reveal"><span>03.</span> Projects & Achievements</h2>
+      <div class="project-tools reveal">
+        <div class="filters" id="filters" role="group" aria-label="Filter projects by category"></div>
+        <label class="search">
+          <span class="sr-only">Search projects</span>
+          <input type="search" id="project-search" placeholder="Search projects or tech…" />
+        </label>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+      <p class="empty" id="projects-empty" hidden>No projects match your search.</p>
+
+      <h3 class="sub-title reveal" id="achievements">🏆 Achievements & Certificates</h3>
+      <div class="achievements" id="achievements-list"></div>
+    </section>
+
+    <!-- ============ VIDEO ============ -->
+    <section id="video" class="section">
+      <h2 class="section-title reveal"><span>04.</span> Promo Video</h2>
+      <div class="video-card card reveal">
+        <video id="promo" controls preload="metadata" playsinline poster="">
+          <source src="/assets/video/promo.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+        <div class="video-missing" id="video-missing" hidden>
+          <p>🎬 Promo video coming soon</p>
+          <small>Export from After Effects to <code>public/assets/video/promo.mp4</code></small>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION & EXPERIENCE ============ -->
+    <section id="journey" class="section">
+      <h2 class="section-title reveal"><span>05.</span> Education & Experience</h2>
+      <div class="journey-grid">
+        <div id="education" class="reveal">
+          <h3 class="col-title">🎓 Education</h3>
+          <ol class="timeline" id="education-list"></ol>
+        </div>
+        <div id="experience" class="reveal">
+          <h3 class="col-title">💼 Experience</h3>
+          <ol class="timeline" id="experience-list"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section">
+      <h2 class="section-title reveal"><span>06.</span> Get In Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p>Have a question, an internship opportunity or a project idea? Send me a message and I'll reply by email.</p>
+          <ul class="contact-links" id="contact-links"></ul>
+        </div>
+        <form class="card contact-form reveal" id="contact-form" novalidate>
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" autocomplete="name" required minlength="2" maxlength="80" />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254" />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="field">
+            <label for="cf-subject">Subject</label>
+            <input id="cf-subject" name="subject" required minlength="3" maxlength="120" />
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required minlength="10" maxlength="5000"></textarea>
+            <small class="error" aria-live="polite"></small>
+          </div>
+          <!-- honeypot: hidden from humans, bots fill it -->
+          <div class="hp" aria-hidden="true">
+            <label for="cf-website">Website</label>
+            <input id="cf-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+          <button class="btn primary" type="submit" id="cf-submit">Send Message ✉️</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> <span data-bind="name">Muhammad Basim</span> · Built with Three.js, Blender, After Effects & Gemini</p>
+  </footer>
+
+  <!-- ============ CHATBOT ============ -->
+  <button class="chat-fab" id="chat-fab" aria-label="Open AI chat assistant" aria-expanded="false" aria-controls="chat-panel">🤖</button>
+  <section class="chat-panel" id="chat-panel" role="dialog" aria-label="AI assistant" hidden>
+    <header class="chat-head">
+      <div>
+        <strong>Ask about <span data-bind="firstName">Basim</span></strong>
+        <small>AI assistant · answers from my portfolio</small>
+      </div>
+      <div class="chat-head-actions">
+        <select id="chat-lang" aria-label="Voice language">
+          <option value="en-US">EN</option>
+          <option value="ur-PK">اردو</option>
+        </select>
+        <button class="icon-btn small" id="chat-speak" aria-pressed="false" title="Read answers aloud" aria-label="Read answers aloud">🔈</button>
+        <button class="icon-btn small" id="chat-close" aria-label="Close chat">✕</button>
+      </div>
+    </header>
+    <div class="chat-log" id="chat-log" aria-live="polite"></div>
+    <div class="chat-suggest" id="chat-suggest">
+      <button>What are his skills?</button>
+      <button>Tell me about his projects</button>
+      <button>Iski education kya hai?</button>
+      <button>How can I contact him?</button>
+    </div>
+    <form class="chat-input" id="chat-form">
+      <button type="button" class="icon-btn small" id="chat-mic" aria-label="Speak your question" title="Voice input">🎤</button>
+      <label class="sr-only" for="chat-text">Your question</label>
+      <input id="chat-text" maxlength="500" placeholder="Ask anything about me…" autocomplete="off" />
+      <button type="submit" class="icon-btn small send" aria-label="Send">➤</button>
+    </form>
+  </section>
+
+  <noscript><p class="noscript">This portfolio needs JavaScript for the 3D scene and content.</p></noscript>
+
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="/js/scene.js"></script>
+  <!-- Vercel Web Analytics (works after enabling Analytics in the Vercel dashboard) -->
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

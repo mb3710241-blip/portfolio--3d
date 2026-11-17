@@ -1,0 +1,144 @@
+{
+  "_help": "This ONE file controls the website AND the chatbot. After editing run: npm run build-index",
+  "name": "Muhammad Basim",
+  "roll": "GA-23039",
+  "title": "Computer Science (Gaming & Animation) Student",
+  "university": "NED University of Engineering & Technology",
+  "location": "Karachi, Pakistan",
+  "email": "basim4630086@cloud.neduet.edu.pk",
+  "cv": "/assets/cv.pdf",
+  "social": {
+    "github": "",
+    "linkedin": ""
+  },
+  "typedRoles": ["Gaming & Animation Student", "C++ / OpenGL Game Developer", "3D Artist (Blender)", "AI Enthusiast"],
+  "intro": "Computer Science (Gaming & Animation) student at NED University, Karachi. I build games in C++ and OpenGL, 3D characters in Blender and AI-powered web tools like this portfolio.",
+  "about": [
+    "I am Muhammad Basim (Roll No. GA-23039), a Computer Science student specialising in Gaming & Animation at NED University of Engineering & Technology, Karachi.",
+    "I enjoy building games and interactive graphics. My latest game is a 2D Spider Game in C++ with OpenGL/GLUT, featuring animated spider sprites, collision detection, difficulty levels and sound effects.",
+    "I program mainly in C++ and Python, and I am learning 3D modelling in Blender, motion graphics in After Effects, web development and AI tools such as RAG chatbots."
+  ],
+  "interests": ["Game development", "3D modelling & animation", "Computer graphics", "Artificial intelligence"],
+  "languages": ["English", "Urdu"],
+  "stats": [
+    { "label": "Projects", "value": "3+" },
+    { "label": "Technologies", "value": "10+" },
+    { "label": "Games Built", "value": "1" }
+  ],
+  "skills": [
+    {
+      "category": "Programming",
+      "icon": "💻",
+      "items": [
+        { "name": "C++", "level": 80 },
+        { "name": "Python", "level": 75 },
+        { "name": "JavaScript", "level": 55 },
+        { "name": "SAP ABAP", "level": 50 }
+      ]
+    },
+    {
+      "category": "Game Dev & Graphics",
+      "icon": "🎮",
+      "items": [
+        { "name": "OpenGL / GLUT", "level": 75 },
+        { "name": "2D Sprite Animation", "level": 70 },
+        { "name": "Collision Detection", "level": 70 }
+      ]
+    },
+    {
+      "category": "3D & Animation",
+      "icon": "🎨",
+      "items": [
+        { "name": "Blender", "level": 55 },
+        { "name": "After Effects", "level": 50 },
+        { "name": "Three.js", "level": 50 }
+      ]
+    },
+    {
+      "category": "Web, AI & Tools",
+      "icon": "🤖",
+      "items": [
+        { "name": "HTML & CSS", "level": 65 },
+        { "name": "RAG / LLM APIs", "level": 55 },
+        { "name": "Git & GitHub", "level": 60 },
+        { "name": "VS Code", "level": 80 }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "portfolio-3d",
+      "title": "Interactive 3D Web Portfolio",
+      "category": "Web",
+      "year": "2026",
+      "image": "",
+      "description": "This website: a 3D portfolio with a custom Blender avatar, an After Effects promo video, a RAG-based AI chatbot that answers questions about me, and a secure contact form.",
+      "highlights": [
+        "Three.js scene with mouse-reactive 3D objects and an animated, rigged avatar",
+        "RAG chatbot: chunking, Gemini embeddings, vector search and grounded answers with citations",
+        "Contact form with frontend and backend validation, honeypot and rate limiting"
+      ],
+      "tech": ["Three.js", "JavaScript", "Node.js", "Gemini API", "Resend", "Vercel", "Blender", "After Effects"],
+      "link": "",
+      "repo": ""
+    },
+    {
+      "id": "spider-game",
+      "title": "Spider Game (C++ / OpenGL / GLUT)",
+      "category": "Game",
+      "year": "2026",
+      "image": "",
+      "description": "A 2D arcade shooter built for the CT-384 Graphics Design CCA. A house with a rotating cannon on its roof defends itself against spiders that crawl, bounce off the walls, drop on silk threads and chase the house on higher levels.",
+      "highlights": [
+        "Keyboard and mouse controls: move the house, rotate the cannon and shoot",
+        "Multiple animated spider sprites (small, purple and black widow with 3-hit health bar) with moving legs",
+        "Movement patterns: bounce, zig-zag, thread-drop and chase, using speed and direction (dx = s·cosθ·t)",
+        "Circle collision detection (dist < r1 + r2) for bullets, spiders and the house",
+        "Scoring, lives, Easy / Medium / Hard difficulty, level progression and a saved high score",
+        "Sound effects, particle explosions, floating score text, screen shake and a night-sky scene with moon and cobwebs"
+      ],
+      "tech": ["C++", "OpenGL", "GLUT"],
+      "link": "",
+      "repo": ""
+    },
+    {
+      "id": "sap-ar-aging",
+      "title": "SAP AR Aging Report (ZFI_AR_AGING)",
+      "category": "Enterprise",
+      "year": "2026",
+      "image": "",
+      "description": "A custom SAP accounts-receivable aging report (ZFI_AR_AGING) that breaks open customer items into aging buckets by days, reconciled against SAP's standard RFIDCN_AR_AGING report.",
+      "highlights": [
+        "Days-based aging breakdown of open receivables",
+        "Results reconciled against the standard SAP aging report"
+      ],
+      "tech": ["SAP ABAP", "SAP FI"],
+      "link": "",
+      "repo": ""
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Spider Game: CT-384 Graphics Design CCA",
+      "issuer": "NED University",
+      "year": "2026",
+      "description": "Completed a full OpenGL game with sprite animation, collision detection, 3 difficulty levels and sound."
+    }
+  ],
+  "education": [
+    {
+      "degree": "BS Computer Science (Gaming & Animation)",
+      "institution": "NED University of Engineering & Technology, Karachi",
+      "period": "2023 – 2027",
+      "details": "Courses include CT-384 Graphics Design (OpenGL) and AI & Expert Systems."
+    }
+  ],
+  "experience": [
+    {
+      "role": "Student Game & Graphics Developer",
+      "org": "Course and personal projects",
+      "period": "2023 – Present",
+      "details": "Built a C++/OpenGL Spider Game, a custom SAP AR aging report, and this 3D portfolio with a Blender avatar and a RAG chatbot."
+    }
+  ]
+}

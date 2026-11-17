@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-3d",
+  "version": "1.0.0",
+  "description": "Interactive 3D web portfolio with Blender avatar, After Effects promo video, RAG chatbot and contact system.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "build-index": "node scripts/build-index.mjs",
+    "build": "node scripts/build-index.mjs",
+    "test": "node scripts/smoke-test.mjs"
+  }
+}
